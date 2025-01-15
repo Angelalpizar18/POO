@@ -1,5 +1,5 @@
 class Personaje:
-    #Atributos de la clase
+   #Atributos de la clase
     nombre = 'default'
     fuerza = 0
     inteligencia = 0
@@ -55,7 +55,9 @@ class Personaje:
 mi_personaje = Personaje("Trakalosa de Monterrey", 70, 90, 50, 100)
 mi_enemigo = Personaje("La arrolladora banda limón", 60, 90, 40, 100)
 #print(mi_personaje.dañar(mi_enemigo))
-mi_personaje.atributos()
 mi_personaje.atacar(mi_enemigo)
-mi_enemigo.atributos()
+#Prueba 7. Getters and setters
+print(mi_personaje.get_fuerza())
+mi_personaje.set_fuerza(-100)
+print(mi_personaje.get_fuerza())
 
