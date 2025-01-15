@@ -44,6 +44,12 @@ class Personaje:
             enemigo.morir()
 
         print("Vida de", enemigo.nombre, "es", enemigo.vida)
+        
+    def get_fuerza(self):
+        return self.__fuerza
+
+    def set_fuerza(self, fuerza):
+        self.__fuerza = fuerza
 
 #Variable del constructor de la clase
 mi_personaje = Personaje("Trakalosa de Monterrey", 70, 90, 50, 100)
