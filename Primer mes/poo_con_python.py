@@ -1,10 +1,4 @@
 class Personaje:
-   #Atributos de la clase
-    nombre = 'default'
-    fuerza = 0
-    inteligencia = 0
-    defensa = 0
-    vida = 0
     
     def __init__(self, nombre, fuerza, inteligencia, defensa, vida):
         #El signo "=" es asignación,
@@ -45,19 +39,62 @@ class Personaje:
 
         print("Vida de", enemigo.nombre, "es", enemigo.vida)
         
-    def get_fuerza(self):
-        return self.__fuerza
+#Creando clase "Guerrero" que hereda de la clase padre "Personaje"
+class Guerrero(Personaje):
+    #Sobreescribir el constructor
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
+        #Llamar a la clase padre
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.espada = espada
+        
+#Pedirle al usuario escoger un arma
+    def cambiar_arma(self):
+        opcion = int(input("Elige un arma: (1)Espada de plata, daño 10. (2) Espada de bronce, daño 8"))
+        if opcion == 1:
+            self.espada = 10
+        elif opcion == 2:
+            self.espada = 8
+        else:
+            print("Valor incorrecto")
+    
+    #Sobrescribir método
+    def atributos(self):
+        super().atributos()
+        print("-Espada:",self.espada)
+    
+    #Sobrescribir el cálculo del daño
+    def dañar(self, enemigo):
+        return self.fuerza * self.espada - enemigo.defensa
 
-    def set_fuerza(self, fuerza):
-        self.__fuerza = fuerza
+#Creando clase "Mago" que hereda de la clase padre "Personaje"   
+class Mago(Personaje):
+    #Sobreescribir el constructor
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, libro):
+        #Llamar a la clase padre
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.libro = libro
+        
+    #Sobrescribir método
+    def atributos(self):
+        super().atributos()
+        print("-Libro:",self.libro)
+    
+    #Sobrescribir el cálculo del daño
+    def dañar(self, enemigo):
+        return self.inteligencia * self.libro - enemigo.defensa
 
-#Variable del constructor de la clase
-mi_personaje = Personaje("Trakalosa de Monterrey", 70, 90, 50, 100)
-mi_enemigo = Personaje("La arrolladora banda limón", 60, 90, 40, 100)
-#print(mi_personaje.dañar(mi_enemigo))
-mi_personaje.atacar(mi_enemigo)
-#Prueba 7. Getters and setters
-print(mi_personaje.get_fuerza())
-mi_personaje.set_fuerza(-100)
-print(mi_personaje.get_fuerza())
-
+trakalosa = Personaje("La trakalosa de Monterrey", 20, 15, 10, 100)
+hercules = Guerrero("Hércules", 20, 15, 10, 100, 5)
+diosito = Mago("Diosito", 20, 15, 10, 100, 5)
+#Imprimir atributos antes del ataque
+trakalosa.atributos()
+hercules.atributos()
+diosito.atributos()
+#Ataques
+trakalosa.atacar(hercules)
+hercules.atacar(diosito)
+diosito.atacar(trakalosa)
+#Imprimir atributos después del ataque
+trakalosa.atributos()
+hercules.atributos()
+diosito.atributos()
